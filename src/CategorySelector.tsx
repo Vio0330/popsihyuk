@@ -11,10 +11,10 @@ const SearchResultsContainer = styled.div`
   border: 1px solid #ccc;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   position: absolute;
-  width: 100%;
+  width: 82%;
   background-color: white;
   z-index: 1000;
-  margin-top: 8px; // 검색창과의 간격 추가
+  margin: 40px;
 `;
 
 const SearchResult = styled.button`
@@ -49,12 +49,20 @@ interface CategorySelectorProps {
     };
   
     return (
-        <div>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
           <input
             type="text"
             placeholder="검색..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            style={{
+                padding: '10px',
+                margin: '5px',
+                border: '1px solid #ddd',
+                borderRadius: '4px',
+                fontSize: '16px',
+                width: '80%',
+              }}
           />
           {(
             <SearchResultsContainer>

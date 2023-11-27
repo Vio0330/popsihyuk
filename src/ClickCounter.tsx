@@ -44,9 +44,8 @@ const ClickCounter: React.FC<{ category: string }> = ({ category }) => {
   };
 
   return (
-    <div>
+    <div onClick={handleClick} style={{ height: '30vh', width: '100vw' }}>
       <h1>{category.toUpperCase()} Count: {count}</h1>
-      <button onClick={handleClick}>Click me!</button>
       <h1>myClick Count: {clickCount}</h1>
     </div>
   );

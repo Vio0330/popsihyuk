@@ -22,7 +22,7 @@ const RankingItem = styled.div`
   }
 `;
 
-const CategoryClicksRanking: React.FC = () => {
+const CategoryClicksRanking: React.FC<{ category: string }> = ({ category }) => {
   const [categoryClicks, setCategoryClicks] = useState<{ [key: string]: number }>({});
 
   useEffect(() => {
@@ -35,17 +35,26 @@ const CategoryClicksRanking: React.FC = () => {
     return () => {
       unsubscribe()
     }; // 클린업 함수
-  }, []);
+  });
 
   const sortedCategories = Object.entries(categoryClicks).sort((a, b) => b[1] - a[1]);
+  const tofind = sortedCategories.find((([key]) => key === category))
+  
 
   return (
     <RankingContainer>
-      {sortedCategories.map(([category, clicks], index) => (
-        <RankingItem key={category}>
-          {index + 1}. {category}: {clicks} clicks
+      {tofind && (
+        <RankingItem key={tofind[0]}>
+          {tofind[0]}: {tofind[1]} clicks
         </RankingItem>
-      ))}
+      )}
+      {sortedCategories
+        .filter(([key]) => key !== category)
+        .map(([cat, clicks], index) => (
+          <RankingItem key={cat}>
+            {index + 1}. {cat}: {clicks} clicks
+          </RankingItem>
+        ))}
     </RankingContainer>
   );
 };

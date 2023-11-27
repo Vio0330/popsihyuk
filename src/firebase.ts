@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
+import { getStorage } from "firebase/storage";
 const firebaseConfig = {
   apiKey: "AIzaSyC9Y9bRYZls-CWqrAo1E97waOV6mI697WY",
   authDomain: "hanni-d605b.firebaseapp.com",
@@ -17,3 +18,4 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
 export {database};
+export const storage = getStorage(app);
