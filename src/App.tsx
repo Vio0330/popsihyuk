@@ -20,7 +20,7 @@ function App() {
   const imagePath = "kpopcat.png"
   const logoPath = "kpopcat_word.png"
   const init = async () => {
-    setTimeout(() => setIsLoading(false), 2000);
+    setTimeout(() => setIsLoading(false), 1000);
   };
 
   useEffect(() => {

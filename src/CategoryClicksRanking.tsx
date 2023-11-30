@@ -22,6 +22,16 @@ const RankingItem = styled.div`
   }
 `;
 
+const SelectedItem = styled.div`
+  padding: 10px;
+  margin: 5px 0;
+  border-bottom: 1px solid #eee;
+  background-color: gray;
+  &:last-child {
+    border-bottom: none;
+  }
+`;
+
 const CategoryClicksRanking: React.FC<{ category: string }> = ({ category }) => {
   const [categoryClicks, setCategoryClicks] = useState<{ [key: string]: number }>({});
 
@@ -39,17 +49,16 @@ const CategoryClicksRanking: React.FC<{ category: string }> = ({ category }) => 
 
   const sortedCategories = Object.entries(categoryClicks).sort((a, b) => b[1] - a[1]);
   const tofind = sortedCategories.find((([key]) => key === category))
-  
+  const tofindrank = sortedCategories.findIndex((([key]) => key === category))
 
   return (
     <RankingContainer>
       {tofind && (
-        <RankingItem key={tofind[0]}>
-          {tofind[0]}: {tofind[1]} clicks
-        </RankingItem>
+        <SelectedItem key={tofind[0]} >
+          {tofindrank + 1}. {tofind[0]}: {tofind[1]} clicks
+        </SelectedItem>
       )}
       {sortedCategories
-        .filter(([key]) => key !== category)
         .map(([cat, clicks], index) => (
           <RankingItem key={cat}>
             {index + 1}. {cat}: {clicks} clicks
