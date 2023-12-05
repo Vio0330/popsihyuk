@@ -17,7 +17,7 @@ const ClickCounter: React.FC<{ category: string }> = ({ category }) => {
 
     return () => unsubscribe(); // 클린업 함수
   }, [category]);
-
+  //Vio
   const handleClick = () => {
     // Firebase에서 카운트 업데이트
     const countRef = ref(database, `counts/${category}`);
