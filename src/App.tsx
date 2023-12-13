@@ -7,6 +7,7 @@ import CategorySelector from './CategorySelector';
 import CategoryClicksRanking from "./CategoryClicksRanking";
 import DisplayImage from "./DisplayImage";
 import FloatingImageButton from "./FloatingImageButton";
+import ImageWithClickCounter from "./ImageAndCounter";
 
 
 
@@ -35,11 +36,28 @@ function App() {
         <LoadingScreen />
       ) : (
         <div>
-          <DisplayImage imagePath={imagePath} logoPath={logoPath}></DisplayImage>
+          
+          {/* <div style={{ position: "relative" }}>
+            <DisplayImage imagePath={imagePath} logoPath={logoPath} />
+
+            <div style={{
+              position: "absolute",
+              top: "150px",     // Position from the top of the outer div
+              left: 0,          // Align to the left of the outer div
+              width: '100%',    // Match the width of the outer div
+              height: '100%',   // Match the height of the outer div
+            }}>
+              <ClickCounter category={selectedCategory} />
+            </div>
+          </div> */}
+          <DisplayImage logoPath={logoPath}/>
+          <ImageWithClickCounter imagePath={imagePath}  category={selectedCategory}/>
+
+
+
           <CategorySelector onSelectCategory={setSelectedCategory} />
-          <ClickCounter category={selectedCategory} />
           <CategoryClicksRanking category={selectedCategory} />
-          <FloatingImageButton imageSrc="coffee.png" />
+          <FloatingImageButton imageSrc="circlecoffee.png" />
         </div>
       )}
     </>

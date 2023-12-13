@@ -44,9 +44,13 @@ const ClickCounter: React.FC<{ category: string }> = ({ category }) => {
         cursor: 'pointer', // 마우스 커서를 포인터로 변경
       }}
     >
-      <h1 style={{ fontSize: '5rem', font: 'bold'}}>{clickCount} in {count}</h1>
+      <h1 style={{ fontSize: '5rem', fontWeight: 'bold', display: 'flex', width: '100%', justifyContent: 'center' }}>
+        <span style={{ margin: '0 20%', display: 'flex', justifyContent: 'center' }}>{clickCount}</span>
+        <span style={{ margin: '0 20%', display: 'flex', justifyContent: 'center' }}>{count}</span>
+      </h1>
     </div>
   );
+
 };
 
 export default ClickCounter;
