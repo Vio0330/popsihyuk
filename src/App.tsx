@@ -6,6 +6,7 @@ import ClickCounter from "./ClickCounter";
 import CategorySelector from './CategorySelector';
 import CategoryClicksRanking from "./CategoryClicksRanking";
 import DisplayImage from "./DisplayImage";
+import FloatingImageButton from "./FloatingImageButton";
 import { CheckoutPage } from "./Toss";
 
 
@@ -39,6 +40,7 @@ function App() {
           <CategorySelector onSelectCategory={setSelectedCategory} />
           <ClickCounter category={selectedCategory} />
           <CategoryClicksRanking category={selectedCategory} />
+          <FloatingImageButton imageSrc="coffee.png" />
           <CheckoutPage />
         </div>
       )}
