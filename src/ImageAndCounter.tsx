@@ -44,7 +44,7 @@ const ImageWithClickCounter : React.FC<DisplayImageProps> = ({ imagePath,categor
     return () => unsubscribe();
   }, [category]);
 
-  const handleClick = () => {
+  const handleImageClick = () => {
     const countRef = dbref(database, `counts/${category}`);
     runTransaction(countRef, (currentCount) => {
       return (currentCount || 0) + 1;
@@ -55,7 +55,7 @@ const ImageWithClickCounter : React.FC<DisplayImageProps> = ({ imagePath,categor
     localStorage.setItem('clickCount', newClickCount.toString());
   };
 
-  
+
   return (
     <div style={{
       display: 'flex',
@@ -63,31 +63,33 @@ const ImageWithClickCounter : React.FC<DisplayImageProps> = ({ imagePath,categor
       justifyContent: 'center',
       width: '100%',
       minHeight: '20vh'
-    }} onClick={handleClick}>
-  
+    }}>
+
       {/* Click Count Display with responsive font size */}
       <div style={{ width: '150px', textAlign: 'right' }}>
-        <h1 style={{ fontSize: '5vw', fontWeight: 'bold' }}> {/* Use vw unit for font size */}
+        <h1 style={{ fontSize: '5vw', fontWeight: 'bold' }}>
           {clickCount}
         </h1>
       </div>
-  
-      {/* Image Display */}
+
+      {/* Image Button */}
       {imageUrl && (
-        <img
-          src={imageUrl}
-          alt="Uploaded"
-          style={{ width: '30%', height: 'auto', marginLeft: '20px', marginRight: '20px' }}
-        />
+        <button onClick={handleImageClick} style={{ background: 'none', border: 'none', padding: 0 }}>
+          <img
+            src={imageUrl}
+            alt="Uploaded"
+            style={{ width: '30%', height: 'auto' }}
+          />
+        </button>
       )}
-  
+
       {/* Count Display with responsive font size */}
       <div style={{ width: '150px', textAlign: 'left' }}>
-        <h1 style={{ fontSize: '5vw', fontWeight: 'bold' }}> {/* Use vw unit for font size */}
+        <h1 style={{ fontSize: '5vw', fontWeight: 'bold' }}>
           {count}
         </h1>
       </div>
-  
+
     </div>
   );
   

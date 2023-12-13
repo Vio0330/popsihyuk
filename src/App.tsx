@@ -7,6 +7,7 @@ import CategoryClicksRanking from "./CategoryClicksRanking";
 import DisplayImage from "./DisplayImage";
 import FloatingImageButton from "./FloatingImageButton";
 import ImageWithClickCounter from "./ImageAndCounter";
+import CoffeeRanking from "./CoffeeRanking";
 
 
 
@@ -53,6 +54,7 @@ function App() {
           <ImageWithClickCounter imagePath={imagePath}  category={selectedCategory}/>
           <CategorySelector onSelectCategory={setSelectedCategory} />
           <CategoryClicksRanking category={selectedCategory} />
+          <CoffeeRanking category={selectedCategory}/>
           <FloatingImageButton imageSrc="circlecoffee.png" />
         </div>
       )}
