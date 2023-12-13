@@ -1,5 +1,6 @@
 .floating-image-button {
     position: fixed;
+    
     right: 40px;
     z-index: 1000;
     border: none;
