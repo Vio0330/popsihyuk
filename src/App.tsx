@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 import LoadingScreen from "./components/loading-screen";
-import ClickCounter from "./ClickCounter";
 import CategorySelector from './CategorySelector';
 import CategoryClicksRanking from "./CategoryClicksRanking";
 import DisplayImage from "./DisplayImage";
@@ -52,9 +51,6 @@ function App() {
           </div> */}
           <DisplayImage logoPath={logoPath}/>
           <ImageWithClickCounter imagePath={imagePath}  category={selectedCategory}/>
-
-
-
           <CategorySelector onSelectCategory={setSelectedCategory} />
           <CategoryClicksRanking category={selectedCategory} />
           <FloatingImageButton imageSrc="circlecoffee.png" />
