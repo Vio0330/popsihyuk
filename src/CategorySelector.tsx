@@ -32,49 +32,60 @@ const SearchResult = styled.button`
 
 interface CategorySelectorProps {
     onSelectCategory: (category: string) => void;
+}
+
+const CategorySelector: React.FC<CategorySelectorProps> = ({ onSelectCategory }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const categories = ['BTS', '르세라핌', '아이브', '뉴진스', 'nmixx', '뉴세라핌', '아이들', '첫사랑', 'stuvio', '봉준호'];
+  const [isFocus, setIsFocus] = useState(false);
+  const [isSelected, setIsSelected] = useState(false);
+
+  const filteredCategories = categories
+    .filter(category => category.toLowerCase().includes(searchTerm.toLowerCase()))
+    .filter(()=>!isSelected||isFocus)
+    //.filter(category => category.toLowerCase() !== searchTerm.toLowerCase())
+    .slice(0, 5);
+
+  const handleSelectCategory = (category: string) => {
+    setSearchTerm(category); // 검색창에 선택된 카테고리를 설정
+    onSelectCategory(category);
+    setIsSelected(true);
+  };
+
+  const setIsFocusTrue = () => {
+    setIsFocus(true);
+    setIsSelected(false);
   }
 
-  const CategorySelector: React.FC<CategorySelectorProps> = ({ onSelectCategory }) => {
-    const [searchTerm, setSearchTerm] = useState('');
-    const categories = ['BTS', '르세라핌', '아이브', '뉴진스', 'nmixx', '뉴세라핌', '아이들', '첫사랑', 'stuvio', '봉준호'];
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <input
+        type="text"
+        placeholder="검색..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        onFocus={setIsFocusTrue}
+        onBlur={()=>setIsFocus(false)}
+        style={{
+          padding: '10px',
+          margin: '5px',
+          border: '1px solid #ddd',
+          borderRadius: '4px',
+          fontSize: '16px',
+          width: '80%',
+        }}
+      />
+      {filteredCategories.length > 0 && (
+        <SearchResultsContainer>
+          {filteredCategories.map(category => (
+            <SearchResult key={category} onClick={() => handleSelectCategory(category)}>
+              {category}
+            </SearchResult>
+          ))}
+        </SearchResultsContainer>
+      )}
+    </div>
+  );
+};
   
-    const filteredCategories = categories
-      .filter(category => category.toLowerCase().includes(searchTerm.toLowerCase()))
-      .filter(category => category.toLowerCase() !== searchTerm.toLowerCase())
-      .slice(0, 8);
-  
-    const handleSelectCategory = (category: string) => {
-      setSearchTerm(category); // 검색창에 선택된 카테고리를 설정
-      onSelectCategory(category);
-    };
-  
-    return (
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <input
-            type="text"
-            placeholder="검색..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            style={{
-                padding: '10px',
-                margin: '5px',
-                border: '1px solid #ddd',
-                borderRadius: '4px',
-                fontSize: '16px',
-                width: '80%',
-              }}
-          />
-          {(
-            <SearchResultsContainer>
-              {filteredCategories.map(category => (
-                <SearchResult key={category} onClick={() => handleSelectCategory(category)}>
-                  {category}
-                </SearchResult>
-              ))}
-            </SearchResultsContainer>
-          )}
-        </div>
-      );
-    };
-    
-    export default CategorySelector;
+export default CategorySelector;
