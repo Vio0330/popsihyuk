@@ -55,7 +55,7 @@ function App() {
           <CategorySelector onSelectCategory={setSelectedCategory} />
           <CategoryClicksRanking category={selectedCategory} />
           <CoffeeRanking category={selectedCategory}/>
-          <FloatingImageButton imageSrc="circlecoffee.png" coffeebutton="circlecoffee.png" tossbutton="circlecoffee.png"/>
+          <FloatingImageButton imageSrc="circlecoffee.png" coffeebutton="buymeacoffee.png" tossbutton="toss2.png"/>
         </div>
       )}
     </>
