@@ -72,7 +72,7 @@ const ImageWithClickCounter : React.FC<DisplayImageProps> = ({ imagePath,categor
         </h1>
       </div>
 
-      {/* Image Button */}
+      {/* Image Button sdsd*/}
       {imageUrl && (
         <button onClick={handleImageClick} style={{ background: 'none', border: 'none', padding: 0 }}>
           <img
@@ -88,6 +88,7 @@ const ImageWithClickCounter : React.FC<DisplayImageProps> = ({ imagePath,categor
         <h1 style={{ fontSize: '5vw', fontWeight: 'bold' }}>
           {count}
         </h1>
+        
       </div>
 
     </div>
