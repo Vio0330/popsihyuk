@@ -6,7 +6,7 @@ import ClickCounter from "./ClickCounter";
 import CategorySelector from './CategorySelector';
 import CategoryClicksRanking from "./CategoryClicksRanking";
 import DisplayImage from "./DisplayImage";
-
+import React from "react";
 
 
 const GlobalStyles = createGlobalStyle`
