@@ -6,7 +6,8 @@ import ClickCounter from "./ClickCounter";
 import CategorySelector from './CategorySelector';
 import CategoryClicksRanking from "./CategoryClicksRanking";
 import DisplayImage from "./DisplayImage";
-import React from "react";
+import FloatingImageButton from "./FloatingImageButton";
+
 
 
 const GlobalStyles = createGlobalStyle`
@@ -38,6 +39,7 @@ function App() {
           <CategorySelector onSelectCategory={setSelectedCategory} />
           <ClickCounter category={selectedCategory} />
           <CategoryClicksRanking category={selectedCategory} />
+          <FloatingImageButton imageSrc="coffee.png" />
         </div>
       )}
     </>

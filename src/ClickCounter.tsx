@@ -13,11 +13,12 @@ const ClickCounter: React.FC<{ category: string }> = ({ category }) => {
     const unsubscribe = onValue(countRef, (snapshot) => {
       const data = snapshot.val();
       setCount(data ?? 0);
+      //rongorong
     });
 
     return () => unsubscribe(); // 클린업 함수
   }, [category]);
-
+  //Vio
   const handleClick = () => {
     // Firebase에서 카운트 업데이트
     const countRef = ref(database, `counts/${category}`);
