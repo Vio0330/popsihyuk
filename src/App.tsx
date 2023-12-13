@@ -7,6 +7,7 @@ import CategorySelector from './CategorySelector';
 import CategoryClicksRanking from "./CategoryClicksRanking";
 import DisplayImage from "./DisplayImage";
 import FloatingImageButton from "./FloatingImageButton";
+import React from "react";
 
 
 

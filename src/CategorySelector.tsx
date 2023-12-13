@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { SyntheticEvent, KeyboardEvent, useState } from 'react';
 import styled from 'styled-components';
 
 
@@ -39,11 +39,11 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({ onSelectCategory })
   const categories = ['BTS', '르세라핌', '아이브', '뉴진스', 'nmixx', '뉴세라핌', '아이들', '첫사랑', 'stuvio', '봉준호'];
   const [isFocus, setIsFocus] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
+  const [preSelectCategory, setPreSelectCategory] = useState('');
 
   const filteredCategories = categories
     .filter(category => category.toLowerCase().includes(searchTerm.toLowerCase()))
     .filter(()=>!isSelected||isFocus)
-    //.filter(category => category.toLowerCase() !== searchTerm.toLowerCase())
     .slice(0, 5);
 
   const handleSelectCategory = (category: string) => {
@@ -57,15 +57,24 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({ onSelectCategory })
     setIsSelected(false);
   }
 
+  const handleKeyPress = (event:KeyboardEvent<HTMLInputElement>) => {
+    if(event.key === 'Enter') {
+      setIsSelected(true);
+      if (categories.includes(preSelectCategory)) onSelectCategory(preSelectCategory);
+      (document.activeElement as HTMLElement)?.blur();
+    }
+  }
+
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <input
         type="text"
         placeholder="검색..."
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
         onFocus={setIsFocusTrue}
         onBlur={()=>setIsFocus(false)}
+        onChange={(e) => {setSearchTerm(e.target.value); setPreSelectCategory(e.target.value);}}
+        onKeyDown={(e)=>handleKeyPress(e)}
         style={{
           padding: '10px',
           margin: '5px',

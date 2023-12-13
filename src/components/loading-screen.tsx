@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import React from "react";
 export default function LoadingScreen(){
     return <Wrapper><Text>띵띵땅땅...</Text></Wrapper>
 }
