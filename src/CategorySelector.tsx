@@ -16,7 +16,7 @@ const SearchResultsContainer = styled.div`
   z-index: 1000;
   margin: 40px;
 `;
-
+// lania
 const SearchResult = styled.button`
   padding: 10px;
   border: none;
