@@ -1,61 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { storage } from './firebase';
-import { ref, getDownloadURL } from 'firebase/storage';
+import { useState, useEffect } from 'react';
 import './FloatingImageButton.css'; // Import the CSS for styling
 
-interface FloatingImageButtonProps {
-  imageSrc: string; // Source of the main image to display
-  coffeebutton: string; // Source of the coffee image button
-  tossbutton: string; // Source of the toss image button
-}
-
-const FloatingImageButton: React.FC<FloatingImageButtonProps> = ({ imageSrc, coffeebutton, tossbutton }) => {
-  const [imageUrl, setImageUrl] = useState<string>('');
-  const [coffeeImageUrl, setCoffeeImageUrl] = useState('');
-  const [tossImageUrl, setTossImageUrl] = useState('');
+const FloatingImageButton=() => {
 
   const [isPopupVisible, setIsPopupVisible] = useState<boolean>(false);
 
-  useEffect(() => {
-    const fetchImageUrl = async (imgSrc: string) => {
-      if (!imgSrc) return '';
-      try {
-        const imageRef = ref(storage, imgSrc);
-        const url = await getDownloadURL(imageRef);
-        return url;
-      } catch (error) {
-        console.error("Error loading image:", error);
-        return '';
-      }
-    };
-
-    fetchImageUrl(imageSrc).then(setImageUrl);
-  }, [imageSrc]);
-
   
 
-  const fetchImageFromDB = async (key: string) => {
-    try {
-      const imageRef = ref(storage, key); // Adjust this path as per your DB structure
-      const snapshot = await getDownloadURL(imageRef);
-      return snapshot;
-      } catch (error) {
-        console.error("Error loading image:", error);
-        return '';
-      }
-  };
 
   const togglePopup = async () => {
     console.log("Toggling popup");
     setIsPopupVisible(!isPopupVisible);
 
-    // Fetch images only if the popup is being opened
-    if (!isPopupVisible) {
-      const coffeeUrl = await fetchImageFromDB(coffeebutton);
-      const tossUrl = await fetchImageFromDB(tossbutton);
-      setCoffeeImageUrl(coffeeUrl);
-      setTossImageUrl(tossUrl);
-    }
   };
   useEffect(() => {
     console.log("Popup visibility:", isPopupVisible); // Debugging
@@ -64,7 +20,7 @@ const FloatingImageButton: React.FC<FloatingImageButtonProps> = ({ imageSrc, cof
   return (
     <>
       <button className="floating-image-button" style={{ top: 100 }} onClick={togglePopup}>
-        <img src={imageUrl} alt="Floating" />
+        <img src="img/circlecoffee_wp.webp" alt="Floating" />
       </button>
 
       {isPopupVisible && (
@@ -93,10 +49,10 @@ const FloatingImageButton: React.FC<FloatingImageButtonProps> = ({ imageSrc, cof
       boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
     }}>
       <a href="https://www.buymeacoffee.com/kpopcat" className="image-popup-button" style={{ display: 'inline-block', width: '100px', height: '100px', padding: '10px', textAlign: 'center' }}>
-  <img src={coffeeImageUrl} alt="Coffee Button" style={{ maxWidth: '100%', maxHeight: '100%' }} />
+  <img src="img/buymeacoffee_wp.webp" alt="Coffee Button" style={{ maxWidth: '100%', maxHeight: '100%' }} />
 </a>
 <a href="https://toss.me/kpopcat" className="image-popup-button" style={{ display: 'inline-block', width: '100px', height: '100px', padding: '10px', textAlign: 'center' }}>
-  <img src={tossImageUrl} alt="Toss Button" style={{ maxWidth: '100%', maxHeight: '100%' }} />
+  <img src="img/toss2_wp.webp" alt="Toss Button" style={{ maxWidth: '100%', maxHeight: '100%' }} />
 </a>
     </div>
   </>

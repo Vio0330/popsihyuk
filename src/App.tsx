@@ -19,10 +19,8 @@ const GlobalStyles = createGlobalStyle`
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('BTS');
-  const imagePath = "kpopcat.png"
-  const logoPath = "kpopcat_word.png"
   const init = async () => {
-    setTimeout(() => setIsLoading(false), 1000);
+    setTimeout(() => setIsLoading(false), 100);
   };
 
   useEffect(() => {
@@ -50,12 +48,12 @@ function App() {
               <ClickCounter category={selectedCategory} />
             </div>
           </div> */}
-          <DisplayImage logoPath={logoPath}/>
-          <ImageWithClickCounter imagePath={imagePath}  category={selectedCategory}/>
+          <DisplayImage/>
+          <ImageWithClickCounter  category={selectedCategory}/>
           <CategorySelector onSelectCategory={setSelectedCategory} />
           <CategoryClicksRanking category={selectedCategory} />
           <CoffeeRanking category={selectedCategory}/>
-          <FloatingImageButton imageSrc="circlecoffee.png" coffeebutton="buymeacoffee.png" tossbutton="toss2.png"/>
+          <FloatingImageButton />
         </div>
       )}
     </>
