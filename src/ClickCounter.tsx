@@ -6,7 +6,7 @@ import { ref, onValue, runTransaction } from 'firebase/database';
 const ClickCounter: React.FC<{ category: string }> = ({ category }) => {
   const [clickCount, setClickCount] = useState<number>(0);
   const [count, setCount] = useState(0);
-
+  // push check
   useEffect(() => {
     const countRef = ref(database, `counts/${category}`);
     
