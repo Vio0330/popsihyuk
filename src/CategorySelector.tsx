@@ -1,8 +1,6 @@
 import React, { KeyboardEvent, useState } from 'react';
 import styled from 'styled-components';
 
-
-
 const SearchResultsContainer = styled.div`
   display: flex;
   flex-direction: column;

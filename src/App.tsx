@@ -3,11 +3,11 @@ import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 import LoadingScreen from "./components/loading-screen";
 import CategorySelector from './CategorySelector';
-import CategoryClicksRanking from "./CategoryClicksRanking";
 import DisplayImage from "./DisplayImage";
 import FloatingImageButton from "./FloatingImageButton";
 import ImageWithClickCounter from "./ImageAndCounter";
-import CoffeeRanking from "./CoffeeRanking";
+import RankingSelector from "./RankingSelector";
+
 
 
 
@@ -34,7 +34,6 @@ function App() {
         <LoadingScreen />
       ) : (
         <div>
-          
           {/* <div style={{ position: "relative" }}>
             <DisplayImage imagePath={imagePath} logoPath={logoPath} />
 
@@ -51,8 +50,7 @@ function App() {
           <DisplayImage/>
           <ImageWithClickCounter  category={selectedCategory}/>
           <CategorySelector onSelectCategory={setSelectedCategory} />
-          <CategoryClicksRanking category={selectedCategory} />
-          <CoffeeRanking category={selectedCategory}/>
+          <RankingSelector category={selectedCategory}/>
           <FloatingImageButton />
         </div>
       )}
