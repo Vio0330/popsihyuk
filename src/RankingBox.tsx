@@ -6,10 +6,12 @@ import { ref, onValue } from 'firebase/database';
 const RankingContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 20px;
+  margin: 0px;
   padding: 20px;
   border: 1px solid #ddd;
+  border-top: none;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 800px;
 `;
 
 const RankingItem = styled.div`
@@ -32,11 +34,12 @@ const SelectedItem = styled.div`
   }
 `;
 
-const CoffeeRanking: React.FC<{ category: string }> = ({ category }) => {
+const RankingBox: React.FC<{ category: string , menu: boolean }> = ({ category , menu}) => {
   const [Coffees, setCoffees] = useState<{ [key: string]: number }>({});
 
   useEffect(() => {
-    const clicksRef = ref(database, 'coffees'); // 데이터 경로는 실제 경로에 맞게 조정하세요
+    const clicksRef = ref(database, menu?'counts':'coffees');
+    
 
     const unsubscribe =  onValue(clicksRef, (snapshot) => {
       setCoffees(snapshot.val() || {});
@@ -55,17 +58,17 @@ const CoffeeRanking: React.FC<{ category: string }> = ({ category }) => {
     <RankingContainer>
       {tofind && (
         <SelectedItem key={tofind[0]} >
-          {tofindrank + 1}. {tofind[0]}: {tofind[1]} coffees
+          {tofindrank + 1}. {tofind[0]}: {tofind[1]} {menu?'counts':'coffees'}
         </SelectedItem>
       )}
       {sortedCategories
         .map(([cat, clicks], index) => (
           <RankingItem key={cat}>
-            {index + 1}. {cat}: {clicks} coffees
+            {index + 1}. {cat}: {clicks} {menu?'counts':'coffees'}
           </RankingItem>
         ))}
     </RankingContainer>
   );
 };
 
-export default CoffeeRanking;
+export default RankingBox;

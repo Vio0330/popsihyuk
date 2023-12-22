@@ -7,7 +7,7 @@ import DisplayImage from "./DisplayImage";
 import FloatingImageButton from "./FloatingImageButton";
 import ImageWithClickCounter from "./ImageAndCounter";
 import RankingSelector from "./RankingSelector";
-import React from "react";
+
 
 
 
