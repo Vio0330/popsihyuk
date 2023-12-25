@@ -34,8 +34,10 @@ const SelectedItem = styled.div`
   }
 `;
 
-const RankingBox: React.FC<{ category: string , menu: boolean }> = ({ category , menu}) => {
+const RankingBox: React.FC<{ category: string, menu: boolean, isExpanded: boolean }> = ({ category, menu, isExpanded }) => {
+
   const [Coffees, setCoffees] = useState<{ [key: string]: number }>({});
+  
 
   useEffect(() => {
     const clicksRef = ref(database, menu?'counts':'coffees');
@@ -53,7 +55,7 @@ const RankingBox: React.FC<{ category: string , menu: boolean }> = ({ category ,
   const sortedCategories = Object.entries(Coffees).sort((a, b) => b[1] - a[1]);
   const tofind = sortedCategories.find((([key]) => key === category))
   const tofindrank = sortedCategories.findIndex((([key]) => key === category))
-
+  const displayRankings = isExpanded ? sortedCategories.slice(0, 10) : sortedCategories.slice(0, 1);
   return (
     <RankingContainer>
       {tofind && (
@@ -61,12 +63,12 @@ const RankingBox: React.FC<{ category: string , menu: boolean }> = ({ category ,
           {tofindrank + 1}. {tofind[0]}: {tofind[1]} {menu?'counts':'coffees'}
         </SelectedItem>
       )}
-      {sortedCategories
-        .map(([cat, clicks], index) => (
-          <RankingItem key={cat}>
-            {index + 1}. {cat}: {clicks} {menu?'counts':'coffees'}
-          </RankingItem>
-        ))}
+      
+      {displayRankings.map(([cat, clicks], index) => (
+              <RankingItem key={cat} style={{ /* 애니메이션 스타일 */ }}>
+                {index + 1}. {cat}: {clicks} {menu?'counts':'coffees'}
+              </RankingItem>
+            ))}
     </RankingContainer>
   );
 };

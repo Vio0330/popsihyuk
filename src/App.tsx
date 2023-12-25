@@ -33,26 +33,24 @@ function App() {
       {isLoading ? (
         <LoadingScreen />
       ) : (
-        <div>
-      <div style={{ position: "relative" }}>
+        <div style={{ position: "relative", height: "100vh" }}> 
+        <CategorySelector onSelectCategory={setSelectedCategory} />
         <ImageWithClickCounter category={selectedCategory} />
         
         <div style={{ 
-            position: "absolute", 
-            top: "0", // 맨 밑에서 시작
-            justifyContent: "center", 
-            display: "flex", 
-            flexDirection: "column", 
-            alignItems: "center", 
-            width: "100%" 
+            position: "absolute",
+            bottom: "0", // 화면의 맨 밑에 위치
+            width: "100%", // 전체 너비 사용
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center"
         }}>
-          <CategorySelector onSelectCategory={setSelectedCategory} />
+          
           <RankingSelector category={selectedCategory} />
         </div>
+        
+        <FloatingImageButton />
       </div>
-      
-      <FloatingImageButton />
-    </div>
       )}
     </>
   );
