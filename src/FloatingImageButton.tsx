@@ -48,10 +48,10 @@ const FloatingImageButton=() => {
       borderRadius: '10px',
       boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
     }}>
-      <a href="https://www.buymeacoffee.com/kpopcat" className="image-popup-button" style={{ display: 'inline-block', width: '20%', height: '20%', padding: '10px', textAlign: 'center' }}>
+      <a href="https://www.buymeacoffee.com/kpopcat" className="image-popup-button" style={{ display: 'inline-block', width: '100px', height: '100px', padding: '10px', textAlign: 'center' }}>
   <img src="img/buymeacoffee_wp.webp" alt="Coffee Button" style={{ maxWidth: '100%', maxHeight: '100%' }} />
 </a>
-<a href="https://toss.me/kpopcat" className="image-popup-button" style={{ display: 'inline-block', width: '20%', height: '20%', padding: '10px', textAlign: 'center' }}>
+<a href="https://toss.me/kpopcat" className="image-popup-button" style={{ display: 'inline-block', width: '100px', height: '100px', padding: '10px', textAlign: 'center' }}>
   <img src="img/toss2_wp.webp" alt="Toss Button" style={{ maxWidth: '100%', maxHeight: '100%' }} />
 </a>
     </div>

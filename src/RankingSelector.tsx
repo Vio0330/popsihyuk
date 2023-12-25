@@ -11,6 +11,7 @@ const RankingButton = styled.button`
   border: 1px solid #ddd;
   border-bottom: none;
   border-radius: 10px 10px 0 0;
+  font-family: cute;
   width: 421px;
 `;
 
@@ -59,7 +60,7 @@ const RankingSelector: React.FC<{ category : string}> = ({category}) => {
     const coffeeButtonColor = selectedIsClick?"#fff":"#000";
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', fontFamily:"cute"  }}>
             <Container2>
                 <Container1>
                     <ColorButton bgColor={clickButtonColor} color={coffeeButtonColor} onClick={() => setSelectedIsClick(true)}>

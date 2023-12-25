@@ -7,13 +7,14 @@ import DisplayImage from "./DisplayImage";
 import FloatingImageButton from "./FloatingImageButton";
 import ImageWithClickCounter from "./ImageAndCounter";
 import RankingSelector from "./RankingSelector";
+import "./fonts/fonts.css"
 
 
 
 
 const GlobalStyles = createGlobalStyle`
   ${reset};
-  // 나머지 스타일
+  fontFamily:cute;
 `;
 
 function App() {
@@ -33,7 +34,7 @@ function App() {
       {isLoading ? (
         <LoadingScreen />
       ) : (
-        <div style={{ position: "relative", height: "100vh" }}> 
+        <div style={{ position: "relative", height: "100vh", fontFamily:"cute" }}> 
         <DisplayImage/>
         <CategorySelector onSelectCategory={setSelectedCategory} />
         <ImageWithClickCounter category={selectedCategory} />
