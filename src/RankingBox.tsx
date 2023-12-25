@@ -7,7 +7,7 @@ const RankingContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0px;
-  padding: 20px;
+  padding: 1.5vw;
   border: 1px solid #ddd;
   border-top: none;
   background-color: white;
