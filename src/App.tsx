@@ -34,6 +34,7 @@ function App() {
         <LoadingScreen />
       ) : (
         <div style={{ position: "relative", height: "100vh" }}> 
+        <DisplayImage/>
         <CategorySelector onSelectCategory={setSelectedCategory} />
         <ImageWithClickCounter category={selectedCategory} />
         

@@ -58,7 +58,7 @@ const ImageWithClickCounter : React.FC<DisplayImageProps> = ({ category }) => {
           <img
             src="img/kpopcat_wp.webp"
             alt="Uploaded"
-            style={{ width: '50%', height: 'auto' }}
+            style={{ width: '70%', height: 'auto' }}
           />
         </button>
       }
