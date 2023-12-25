@@ -34,25 +34,25 @@ function App() {
         <LoadingScreen />
       ) : (
         <div>
-          {/* <div style={{ position: "relative" }}>
-            <DisplayImage imagePath={imagePath} logoPath={logoPath} />
-
-            <div style={{
-              position: "absolute",
-              top: "150px",     // Position from the top of the outer div
-              left: 0,          // Align to the left of the outer div
-              width: '100%',    // Match the width of the outer div
-              height: '100%',   // Match the height of the outer div
-            }}>
-              <ClickCounter category={selectedCategory} />
-            </div>
-          </div> */}
-          <DisplayImage/>
-          <ImageWithClickCounter  category={selectedCategory}/>
+      <div style={{ position: "relative" }}>
+        <ImageWithClickCounter category={selectedCategory} />
+        
+        <div style={{ 
+            position: "absolute", 
+            top: "0", // 맨 밑에서 시작
+            justifyContent: "center", 
+            display: "flex", 
+            flexDirection: "column", 
+            alignItems: "center", 
+            width: "100%" 
+        }}>
           <CategorySelector onSelectCategory={setSelectedCategory} />
-          <RankingSelector category={selectedCategory}/>
-          <FloatingImageButton />
+          <RankingSelector category={selectedCategory} />
         </div>
+      </div>
+      
+      <FloatingImageButton />
+    </div>
       )}
     </>
   );
