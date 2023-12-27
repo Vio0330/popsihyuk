@@ -10,7 +10,6 @@ import ImageWithClickCounter from "./ImageAndCounter";
 import CoffeeRanking from "./CoffeeRanking";
 
 
-
 const GlobalStyles = createGlobalStyle`
   ${reset};
   // 나머지 스타일
