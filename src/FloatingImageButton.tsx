@@ -20,10 +20,10 @@ const FloatingImageButton=() => {
 
   return (
     <>
-      <button className="floating-image-button" style={{ top: 100 }} onClick={togglePopup}>
+      <button className="floating-image-button" style={{ top: 100, zIndex: 10000 }} onClick={togglePopup}>
         <img src="img/circlecoffee_wp.webp" alt="Floating" />
-        <p style={{color:'white', fontSize: '30px', margin: '10px'}}>click this button</p>
-        <p style={{color:'white', fontSize: '30px'}}>for donation!</p>
+        <p style={{color:'white', fontSize: '40px', margin: '10px', fontFamily: 'cute',zIndex: 300 }}>click this button</p>
+        <p style={{color:'white', fontSize: '40px', fontFamily: 'cute', zIndex: 300 }}>for donation!</p>
       </button>
 
       {isPopupVisible && (

@@ -1,29 +1,38 @@
 @keyframes float {
   0% {
-    transform: translatey(0px);
+    transform: translateY(0px);
   }
   50% {
-    transform: translatey(-20px);
+    transform: translateY(-20px);
   }
   100% {
-    transform: translatey(0px);
+    transform: translateY(0px);
   }
 }
 
 .floating-image-button {
-    position: fixed;
-    
-    right: 40px;
-    z-index: 1000;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    animation: float 3s ease-in-out infinite;
-  }
+  position: fixed;
+  right: 40px;
+  z-index: 1000;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  animation: float 3s ease-in-out infinite;
+}
 
 .floating-image-button img {
   width: 10vw; /* Adjust as needed */
   height: auto;
 }
-  
-  
+
+/* Adjust styles based on mode */
+@media screen and (min-width: 1210px) {
+  /* Mode 4 styles */
+  .floating-image-button {
+    right: 20px;
+  }
+
+  .floating-image-button img {
+    width: 100px; /* Adjust as needed */
+  }
+}

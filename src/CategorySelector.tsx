@@ -4,15 +4,15 @@ import styled from 'styled-components';
 const SearchResultsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  max-height: 200px;
+  max-height: 300px;
   overflow-y: auto;
   border: 1px solid #ccc;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   position: absolute;
-  width: 82%;
+  width: 56vw;
   background-color: white;
-  z-index: 1000;
-  margin: 40px;
+  z-index: 10;
+  margin: 57px;
 `;
 
 const SearchResult = styled.button`
@@ -23,6 +23,7 @@ const SearchResult = styled.button`
   text-align: left;
   width: 100%;
   font-family: cute;
+  font-size: 30px;
   &:hover {
     background-color: #f9f9f9;
   }
@@ -67,7 +68,6 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({ onSelectCategory })
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <input
         type="text"
-        
         placeholder="검색..."
         value={searchTerm}
         onFocus={setIsFocusTrue}
@@ -75,14 +75,13 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({ onSelectCategory })
         onChange={(e) => {setSearchTerm(e.target.value); setPreSelectCategory(e.target.value);}}
         onKeyDown={(e)=>handleKeyPress(e)}
         style={{
-
           fontFamily: 'cute',
           padding: '10px',
           margin: '5px',
           border: '1px solid #ddd',
           borderRadius: '4px',
-          fontSize: '16px',
-          width: '80%',
+          fontSize: '30px',
+          width: '55vw',
         }}
       />
       {filteredCategories.length > 0 && (

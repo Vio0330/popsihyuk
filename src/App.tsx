@@ -20,6 +20,37 @@ const GlobalStyles = createGlobalStyle`
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('BTS');
+  const [windowMode, setWindowMode] = useState(4);
+
+  useEffect(() => {
+    const handleResize = () => {
+      // 현재 창의 너비 확인
+      const windowWidth = window.innerWidth;
+
+      // 너비에 따라 모드 변경
+      if (windowWidth <= 1210) {
+        setWindowMode(3);
+      } else {
+        setWindowMode(4);
+      }
+    };
+
+    // 컴포넌트가 마운트될 때와 창 크기가 변경될 때 이벤트 핸들러 등록
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    // 컴포넌트가 언마운트될 때 이벤트 핸들러 제거
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+
+
+
+
+
+
   const init = async () => {
     setTimeout(() => setIsLoading(false), 100);
   };
@@ -33,11 +64,11 @@ function App() {
       <GlobalStyles />
       {isLoading ? (
         <LoadingScreen />
-      ) : (
+      ) : ( 
         <div style={{ position: "relative", height: "100vh", fontFamily:"cute" }}> 
-        <DisplayImage/>
+        <DisplayImage mode={windowMode}/>
         <CategorySelector onSelectCategory={setSelectedCategory} />
-        <ImageWithClickCounter category={selectedCategory} />
+        <ImageWithClickCounter category={selectedCategory} mode1={windowMode} />
         
         <div style={{ 
             position: "absolute",
@@ -48,7 +79,7 @@ function App() {
             alignItems: "center"
         }}>
           
-          <RankingSelector category={selectedCategory} />
+          <RankingSelector mode={windowMode} category={selectedCategory} />
         </div>
         
         <FloatingImageButton />
