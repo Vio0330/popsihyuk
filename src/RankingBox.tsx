@@ -7,17 +7,21 @@ const RankingContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0px;
-  padding: 20px;
+  padding: 1.5vw;
   border: 1px solid #ddd;
   border-top: none;
   background-color: white;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  width: 800px;
-  fontFamily:cute;
+  width: 51.9vw;
+  max-height: 250px; /* 최대 높이 설정 */
+  overflow-y: auto; /* 내용이 초과할 경우 스크롤바 표시 */
+  fontFamily: cute;
 `;
+
 const RightAlignedText = styled.span`
   float: right; // 텍스트를 우측으로 정렬
 `;
+
 const RankingItem = styled.div`
   padding: 10px;
   margin: 5px 0;

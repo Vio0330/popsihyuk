@@ -11,8 +11,7 @@ const RankingButton = styled.button`
   border: 1px solid #ddd;
   border-bottom: none;
   border-radius: 10px 10px 0 0;
-  font-family: cute;
-  width: 421px;
+  width: 400px;
 `;
 
 interface ColorButtonProps {
@@ -24,6 +23,23 @@ const ColorButton = styled(RankingButton)<ColorButtonProps>`
     background-color: ${(prop)=>prop.bgColor};
     color: ${(prop)=>prop.color};
 `;
+
+const UpBotton = styled.button`
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+    height: 60px;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+    width: 68px;
+    cursor: pointer;
+    font-size: 30px; /* 적절한 폰트 크기로 조정 */
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+`
 
 const Container1 = styled.div`
   display: flex;
@@ -37,16 +53,7 @@ const Container2 = styled.div`
 `
 
 CSSContainerRule
-const ExpandButton = styled.button`
-padding: 10px 20px; /* 버튼 내부 여백 */
-background-color: #007bff; /* 배경색 */
-color: white; /* 글자색 */
-border: none; /* 테두리 제거 */
-border-radius: 5px; /* 둥근 모서리 */
-cursor: pointer; /* 마우스 오버시 커서 변경 */
-font-size: 16px; /* 글자 크기 */
-transition: background-color 0.3s; /* 배경색 변경시 애니메이션 */
-`;
+
 
 const RankingSelector: React.FC<{ category : string}> = ({category}) => {
     const [selectedIsClick, setSelectedIsClick] = useState(true);
@@ -60,7 +67,7 @@ const RankingSelector: React.FC<{ category : string}> = ({category}) => {
     const coffeeButtonColor = selectedIsClick?"#fff":"#000";
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', fontFamily:"cute"  }}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Container2>
                 <Container1>
                     <ColorButton bgColor={clickButtonColor} color={coffeeButtonColor} onClick={() => setSelectedIsClick(true)}>
@@ -69,11 +76,11 @@ const RankingSelector: React.FC<{ category : string}> = ({category}) => {
                     <ColorButton bgColor={coffeeButtonColor} color={clickButtonColor} onClick={() => setSelectedIsClick(false)}>
                         <p>CoffeeRanking</p>
                     </ColorButton>
+                    <UpBotton onClick={toggleExpansion}>
+                        <p>{isExpanded?'V':'^'}</p>
+                    </UpBotton>
                 </Container1>
                 <RankingBox category={category} menu={selectedIsClick} isExpanded={isExpanded}/>
-                <ExpandButton onClick={toggleExpansion}>
-                    {isExpanded ? 'Show Less' : 'Show More'}
-                </ExpandButton>
             </Container2>
         </div>
     )

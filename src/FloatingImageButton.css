@@ -1,3 +1,15 @@
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-20px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
+
 .floating-image-button {
     position: fixed;
     
@@ -6,10 +18,12 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
+    animation: float 3s ease-in-out infinite;
   }
+
+.floating-image-button img {
+  width: 10vw; /* Adjust as needed */
+  height: auto;
+}
   
-  .floating-image-button img {
-    width: 170px; /* Adjust as needed */
-    height: auto;
-  }
   

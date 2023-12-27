@@ -9,11 +9,11 @@ import ImageWithClickCounter from "./ImageAndCounter";
 import RankingSelector from "./RankingSelector";
 import "./fonts/fonts.css"
 
-
-
-
 const GlobalStyles = createGlobalStyle`
   ${reset};
+  body {
+    background-color: black;
+  }
   fontFamily:cute;
 `;
 

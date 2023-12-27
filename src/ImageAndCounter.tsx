@@ -10,6 +10,7 @@ const ImageWithClickCounter : React.FC<DisplayImageProps> = ({ category }) => {
   // State for ClickCounter
   const [clickCount, setClickCount] = useState(0);
   const [count, setCount] = useState(0);
+  const [isReverse, setIsReverse] = useState(true);
 
   
 
@@ -33,6 +34,8 @@ const ImageWithClickCounter : React.FC<DisplayImageProps> = ({ category }) => {
     const newClickCount = clickCount + 1;
     setClickCount(newClickCount);
     localStorage.setItem('clickCount', newClickCount.toString());
+
+    setIsReverse(!isReverse);
   };
 
 
@@ -47,7 +50,7 @@ const ImageWithClickCounter : React.FC<DisplayImageProps> = ({ category }) => {
 
       {/* Click Count Display with responsive font size */}
       <div style={{ width: '150px', textAlign: 'right' }}>
-        <h1 style={{ fontSize: '5vw', fontWeight: 'bold' }}>
+        <h1 style={{ fontSize: '5vw', fontWeight: 'bold', color: 'white' }}>
           {clickCount}
         </h1>
       </div>
@@ -56,16 +59,16 @@ const ImageWithClickCounter : React.FC<DisplayImageProps> = ({ category }) => {
       {
         <button onClick={handleImageClick} style={{ background: 'none', border: 'none', padding: 0 }}>
           <img
-            src="img/kpopcat_wp.webp"
+            src={isReverse?"img/kpopcat_wp.webp":"img/santacat.webp"}
             alt="Uploaded"
-            style={{ width: '70%', height: 'auto' }}
+            style={{ width: '30vw', height: 'auto' }}
           />
         </button>
       }
 
       {/* Count Display with responsive font size */}
       <div style={{ width: '150px', textAlign: 'left' }}>
-        <h1 style={{ fontSize: '5vw', fontWeight: 'bold' }}>
+        <h1 style={{ fontSize: '5vw', fontWeight: 'bold', color: 'white' }}>
           {count}
         </h1>
         
