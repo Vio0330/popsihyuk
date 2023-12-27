@@ -1,37 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { database, storage } from './firebase';
+import { database } from './firebase';
 import { ref as dbref, onValue, runTransaction } from 'firebase/database';
-import { ref as stref, getDownloadURL } from 'firebase/storage';
 interface DisplayImageProps {
-    imagePath: string;
     category: string;
   }
 
-const ImageWithClickCounter : React.FC<DisplayImageProps> = ({ imagePath,category }) => {
-  // State for DisplayImage
-  const [imageUrl, setImageUrl] = useState('');
+const ImageWithClickCounter : React.FC<DisplayImageProps> = ({ category }) => {
 
   // State for ClickCounter
   const [clickCount, setClickCount] = useState(0);
   const [count, setCount] = useState(0);
+  const [isReverse, setIsReverse] = useState(true);
 
-  // Effect for DisplayImage
-  useEffect(() => {
-    if (!imagePath) {
-      return;
-    }
-    const imageRef = stref(storage, imagePath);
-    const fetchImageUrl = async () => {
-      try {
-        const url_image = await getDownloadURL(imageRef);
-        setImageUrl(url_image);
-      } catch (error) {
-        console.error("이미지를 불러오는 중 에러가 발생했습니다:", error);
-      }
-    };
-
-    fetchImageUrl();
-  }, [imagePath]);
+  
 
   // Effect for ClickCounter
   useEffect(() => {
@@ -53,6 +34,8 @@ const ImageWithClickCounter : React.FC<DisplayImageProps> = ({ imagePath,categor
     const newClickCount = clickCount + 1;
     setClickCount(newClickCount);
     localStorage.setItem('clickCount', newClickCount.toString());
+
+    setIsReverse(!isReverse);
   };
 
 
@@ -67,25 +50,25 @@ const ImageWithClickCounter : React.FC<DisplayImageProps> = ({ imagePath,categor
 
       {/* Click Count Display with responsive font size */}
       <div style={{ width: '150px', textAlign: 'right' }}>
-        <h1 style={{ fontSize: '5vw', fontWeight: 'bold' }}>
+        <h1 style={{ fontSize: '5vw', fontWeight: 'bold', color: 'white' }}>
           {clickCount}
         </h1>
       </div>
 
       {/* Image Button sdsd*/}
-      {imageUrl && (
+      {
         <button onClick={handleImageClick} style={{ background: 'none', border: 'none', padding: 0 }}>
           <img
-            src={imageUrl}
+            src={isReverse?"img/kpopcat_wp.webp":"img/santacat.webp"}
             alt="Uploaded"
-            style={{ width: '30%', height: 'auto' }}
+            style={{ width: '30vw', height: 'auto' }}
           />
         </button>
-      )}
+      }
 
       {/* Count Display with responsive font size */}
       <div style={{ width: '150px', textAlign: 'left' }}>
-        <h1 style={{ fontSize: '5vw', fontWeight: 'bold' }}>
+        <h1 style={{ fontSize: '5vw', fontWeight: 'bold', color: 'white' }}>
           {count}
         </h1>
         

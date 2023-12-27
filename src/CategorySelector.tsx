@@ -1,8 +1,6 @@
 import React, { KeyboardEvent, useState } from 'react';
 import styled from 'styled-components';
 
-
-
 const SearchResultsContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -16,7 +14,7 @@ const SearchResultsContainer = styled.div`
   z-index: 1000;
   margin: 40px;
 `;
-// lania
+
 const SearchResult = styled.button`
   padding: 10px;
   border: none;
@@ -24,7 +22,7 @@ const SearchResult = styled.button`
   background: white;
   text-align: left;
   width: 100%;
-
+  font-family: cute;
   &:hover {
     background-color: #f9f9f9;
   }
@@ -69,6 +67,7 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({ onSelectCategory })
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <input
         type="text"
+        
         placeholder="검색..."
         value={searchTerm}
         onFocus={setIsFocusTrue}
@@ -76,6 +75,8 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({ onSelectCategory })
         onChange={(e) => {setSearchTerm(e.target.value); setPreSelectCategory(e.target.value);}}
         onKeyDown={(e)=>handleKeyPress(e)}
         style={{
+
+          fontFamily: 'cute',
           padding: '10px',
           margin: '5px',
           border: '1px solid #ddd',
