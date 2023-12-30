@@ -11,9 +11,11 @@ const ImageWithClickCounter : React.FC<DisplayImageProps> = ({ category }) => {
   const [clickCount, setClickCount] = useState(0);
   const [count, setCount] = useState(0);
   const [isReverse, setIsReverse] = useState(true);
+  const audio1 = new Audio('/snd/bark_snd.mp3');
+  const audio2 = new Audio('/snd/hohoho_snd.mp3');
+
 
   
-
   // Effect for ClickCounter
   useEffect(() => {
     const countRef = dbref(database, `counts/${category}`);
@@ -25,15 +27,21 @@ const ImageWithClickCounter : React.FC<DisplayImageProps> = ({ category }) => {
     return () => unsubscribe();
   }, [category]);
 
-  const handleImageClick = () => {
+  const handleImageClick =() => {
     const countRef = dbref(database, `counts/${category}`);
     runTransaction(countRef, (currentCount) => {
       return (currentCount || 0) + 1;
     });
-
+    
     const newClickCount = clickCount + 1;
     setClickCount(newClickCount);
     localStorage.setItem('clickCount', newClickCount.toString());
+    if (!isReverse) {
+      audio1.play();
+    } else {
+      audio2.play();
+    }
+    
 
     setIsReverse(!isReverse);
   };
