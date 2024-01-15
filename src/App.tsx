@@ -7,19 +7,38 @@ import DisplayImage from "./DisplayImage";
 import FloatingImageButton from "./FloatingImageButton";
 import ImageWithClickCounter from "./ImageAndCounter";
 import RankingSelector from "./RankingSelector";
+import { isMobile } from "react-device-detect";
 import "./fonts/fonts.css"
-
-
-
 
 const GlobalStyles = createGlobalStyle`
   ${reset};
+  body {
+    background-color: black;
+  }
   fontFamily:cute;
 `;
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('BTS');
+  const [widthWindow, setWidthWindow] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      // 현재 창의 너비 확인
+      setWidthWindow(window.innerWidth);
+    };
+
+    // 컴포넌트가 마운트될 때와 창 크기가 변경될 때 이벤트 핸들러 등록
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    // 컴포넌트가 언마운트될 때 이벤트 핸들러 제거
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   const init = async () => {
     setTimeout(() => setIsLoading(false), 100);
   };
@@ -34,10 +53,10 @@ function App() {
       {isLoading ? (
         <LoadingScreen />
       ) : (
-        <div style={{ position: "relative", height: "100vh", fontFamily:"cute" }}> 
-        <DisplayImage/>
+        <div style={{ position: "relative", height: isMobile? "92vh":"100vh", fontFamily:"cute" }}> 
+        <DisplayImage widthWindow={widthWindow}/>
         <CategorySelector onSelectCategory={setSelectedCategory} />
-        <ImageWithClickCounter category={selectedCategory} />
+        <ImageWithClickCounter category={selectedCategory} widthWindow={widthWindow} />
         
         <div style={{ 
             position: "absolute",
@@ -48,7 +67,7 @@ function App() {
             alignItems: "center"
         }}>
           
-          <RankingSelector category={selectedCategory} />
+          <RankingSelector category={selectedCategory} widthWindow={widthWindow} />
         </div>
         
         <FloatingImageButton />

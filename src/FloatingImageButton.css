@@ -1,15 +1,40 @@
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
 .floating-image-button {
-    position: fixed;
-    
-    right: 40px;
-    z-index: 1000;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
+  position: fixed;
+  right: 40px;
+  z-index: 1000;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  animation: float 3s ease-in-out infinite;
+  font-size: 30px;
+}
+
+.floating-image-button img {
+  width: 10vw; /* Adjust as needed */
+  height: auto;
+}
+
+/* Adjust styles based on mode */
+@media screen and (min-width: 1210px) {
+  /* Mode 4 styles */
+  .floating-image-button {
+    right: 20px;
+    font-size: 2.5vw;
   }
-  
+
   .floating-image-button img {
-    width: 170px; /* Adjust as needed */
-    height: auto;
+    width: 100px; /* Adjust as needed */
   }
-  
+}

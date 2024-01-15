@@ -1,27 +1,36 @@
+
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { database } from './firebase'; // Firebase 설정 파일 경로를 확인하세요
 import { ref, onValue } from 'firebase/database';
 
-const RankingContainer = styled.div`
+interface modeNumber{
+  widthWindow:number;
+}
+const RankingContainer = styled.div<modeNumber>`
   display: flex;
   flex-direction: column;
   margin: 0px;
-  padding: 20px;
-  border: 1px solid #ddd;
+  padding: 1.5vw;
+  border: 1px solid #fff;
   border-top: none;
   background-color: white;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  width: 800px;
-  fontFamily:cute;
+  width: ${({ widthWindow }) => (widthWindow > 1210 ? '1208px' : '100vw')};
+  max-height: 50vh; /* 최대 높이 설정 */
+  overflow-y: auto; /* 내용이 초과할 경우 스크롤바 표시 */
+  box-sizing: border-box;
+  fontFamily: cute;
 `;
+
 const RightAlignedText = styled.span`
   float: right; // 텍스트를 우측으로 정렬
+  font-size: 20px;
 `;
+
 const RankingItem = styled.div`
   padding: 10px;
   margin: 5px 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 0.05vw solid #eee;
   background-color: white;
   &:last-child {
     border-bottom: none;
@@ -31,15 +40,14 @@ const RankingItem = styled.div`
 const SelectedItem = styled.div`
   padding: 10px;
   margin: 5px 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 0.05vw solid #eee;
   background-color: gray;
   &:last-child {
     border-bottom: none;
   }
 `;
 
-const RankingBox: React.FC<{ category: string, menu: boolean , isExpanded: boolean}> = ({ category, menu, isExpanded }) => {
-
+const RankingBox: React.FC<{ widthWindow: number, category: string, menu: boolean , isExpanded: boolean}> = ({ widthWindow, category, menu, isExpanded }) => {
   const [Coffees, setCoffees] = useState<{ [key: string]: number }>({});
   const [maxItemsToShow, setMaxItemsToShow] = useState(1); // 표시할 최대 아이템 수
 
@@ -100,7 +108,7 @@ const RankingBox: React.FC<{ category: string, menu: boolean , isExpanded: boole
 
 
   return (
-    <RankingContainer>
+    <RankingContainer widthWindow={widthWindow} >
       {tofind && (
         <SelectedItem key={tofind[0]} >
           {tofindrank + 1}. {tofind[0]}

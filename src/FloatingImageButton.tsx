@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './FloatingImageButton.css'; // Import the CSS for styling
 
+
 const FloatingImageButton=() => {
 
   const [isPopupVisible, setIsPopupVisible] = useState<boolean>(false);
@@ -19,8 +20,10 @@ const FloatingImageButton=() => {
 
   return (
     <>
-      <button className="floating-image-button" style={{ top: 100 }} onClick={togglePopup}>
+      <button className="floating-image-button" style={{ top: 30, zIndex: 10000 }} onClick={togglePopup}>
         <img src="img/circlecoffee_wp.webp" alt="Floating" />
+        <p style={{color:'white', margin: '10px', fontFamily: 'cute',zIndex: 300 }}>click this button</p>
+        <p style={{color:'white', fontFamily: 'cute', zIndex: 300 }}>for donation!</p>
       </button>
 
       {isPopupVisible && (
@@ -39,6 +42,7 @@ const FloatingImageButton=() => {
     {/* Popup */}
     <div className="image-popup" style={{
       position: 'fixed',
+      display: 'flex',
       top: '50%',
       left: '50%',
       transform: 'translate(-50%, -50%)',
@@ -46,12 +50,13 @@ const FloatingImageButton=() => {
       backgroundColor: 'white',
       padding: '20px',
       borderRadius: '10px',
-      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
+      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+      width: '18vw',
     }}>
-      <a href="https://www.buymeacoffee.com/kpopcat" className="image-popup-button" style={{ display: 'inline-block', width: '100px', height: '100px', padding: '10px', textAlign: 'center' }}>
+      <a href="https://www.buymeacoffee.com/kpopcat" className="image-popup-button" style={{ display: 'inline-block', width: '40%', height: '20%', padding: '10px', textAlign: 'center' }}>
   <img src="img/buymeacoffee_wp.webp" alt="Coffee Button" style={{ maxWidth: '100%', maxHeight: '100%' }} />
 </a>
-<a href="https://toss.me/kpopcat" className="image-popup-button" style={{ display: 'inline-block', width: '100px', height: '100px', padding: '10px', textAlign: 'center' }}>
+<a href="https://toss.me/kpopcat" className="image-popup-button" style={{ display: 'inline-block', width: '40%', height: '20%', padding: '10px' }}>
   <img src="img/toss2_wp.webp" alt="Toss Button" style={{ maxWidth: '100%', maxHeight: '100%' }} />
 </a>
     </div>
